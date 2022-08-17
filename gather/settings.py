@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'channels',
     'app',
     'accounts',
-    'dashboard'
+    'dashboard',
+    'room'
    
 ]
 
