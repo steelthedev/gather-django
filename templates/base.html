@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>
+            Gather
+        </title>
+        <link rel="stylesheet" href=" {% static 'css/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://kit.fontawesome.com/5336f7ba15.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        
+
+<section class="dashboard">
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-4 col-xl-2 px-sm-2 px-0  sidebar">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
+                    <a href="{% url 'app:home' %}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline"><img src="img/gather-3.svg" width="100px" alt=""></span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="{% url 'dashboard:dashboard' %}" class="nav-link  side-link align-middle px-0 mt-2" id="one" data-toggle="tooltip" data-placement="top" title="Profile">
+                                <i class="fs-4 fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#submenu1"  class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Meetings">
+                                <i class="fs-4 fa fa-meetup"></i> <span class="ms-1 d-none d-sm-inline">Meetings</span> </a>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Webinars">
+                                <i class="fs-4 fa-podcast fa"></i> <span class="ms-1 d-none d-sm-inline">Webinars</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle " data-toggle="tooltip" data-placement="top" title="Recordings">
+                                <i class="fs-4 fa fa-microphone"></i> <span class="ms-1 d-none d-sm-inline">Recordings</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Settings">
+                                <i class="fs-4 fa fa-cog"></i> <span class="ms-1 d-none d-sm-inline">Settings</span> </a>
+                               
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="User Management">
+                                <i class="fs-4 fa fa-user-cog"></i> <span class="ms-1 d-none d-sm-inline">User Management</span> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Room Management">
+                                <i class="fs-4 fa fa-building-o"></i> <span class="ms-1 d-none d-sm-inline">Room Management</span> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Account Management">
+                                <i class="fs-4 fa fa-user-circle-o"></i> <span class="ms-1 d-none d-sm-inline">Account Management</span> </a>
+                        </li>
+                    </ul>
+                    
+    
+                </div>
+            </div>
+            <div class="col py-3">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block scripts %}
+
+      
+
+{% endblock %}
+
+
+
+
+
+
+</body>
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script> 
+
+</html>
