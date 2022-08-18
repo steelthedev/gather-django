@@ -140,7 +140,7 @@ let getMember = async (user) => {
 
 
 let deleteMember = async () => {
-    let response = await fetch('/delete_member/', {
+    let response = await fetch('/room/delete-member/', {
         method:'POST',
         headers: {
             'Content-Type':'application/json'
