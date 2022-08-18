@@ -10,5 +10,5 @@ urlpatterns = [
     path("get-token/",views.getToken, name="get_token"),
     path('create-member/', views.createMember, name="create_member"),
     path('get-member/', views.getMember, name="get_member"),
-    path('delete-member',views.deleteMember, name="delete_member")
+    path('delete-member/',views.deleteMember, name="delete_member")
 ]
