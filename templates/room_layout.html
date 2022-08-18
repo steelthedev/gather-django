@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>
+            Gather
+        </title>
+        <link rel="stylesheet" href=" {% static 'css/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/room.css' %}">
+        <script src="https://kit.fontawesome.com/5336f7ba15.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        
+
+{% block content %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+      
+
+{% endblock %}
+
+
+
+
+
+
+</body>
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script> 
+<script src="{% static 'agora/AgoraRTC_N-4.11.0.js' %}"></script> 
+<script src="{% static 'js/stream.js' %}"></script> 
+
+
+</html>
