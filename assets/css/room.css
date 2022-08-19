@@ -48,7 +48,7 @@
 
 
 .chat-container{
-    height: 90vh;
+    height: 85vh;
     border: 1px solid #920000;
     width: 80%;
     border-radius: 20px;
@@ -64,8 +64,10 @@
     font-size: 15px;
 }
 
-.message-container{
+.chat-main{
     padding: 0 10px;
+    height: 400px;
+    overflow-y: auto ;
 }
 
 
@@ -91,7 +93,7 @@
 .chat-input{
     padding: 5px;
     width: 100% !important;
-    bottom: 1px;
+    bottom: .5px;
     position: absolute;
     
 }

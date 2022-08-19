@@ -52,15 +52,15 @@
                 </div>
             </div>
             <div class="col-lg-4 mb-5">
-                <div class="chat-container">
+                <div class="chat-container mb-4">
                     <div class="chat-title m-auto text-center mt-3">
                         <h6>Live chat</h6>
                         <p>Chat disappears after meeting ends</p>
                     </div>
-                    <div class="chat-main">
+                    <div class="chat-main" id="chat">
                         {% for m in messages %}
 
-                        <div class="message-container mb-3 d-flex p-2">
+                        <div class="message-container mb-3 d-flex p-2" >
                             <img src="{% static 'img/01.jpg' %}" class="rounded-circle" width="10%" alt="">
                             <div class="message m-2">
                                 <span>{{m.content}}</span>
@@ -69,7 +69,7 @@
 
                         {% endfor %}
                     </div>
-                    <div class="chat-input d-flex text-center mb-5">
+                    <div class="chat-input d-flex text-center mb-2">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="type message" id="chat-message">
                         </div>
@@ -88,7 +88,7 @@
                     <i  alt="" class="fa fa-camera" id="camera-btn"></i>
                 </div>
                 <div id="icon-wrapper" class="m-3">
-                    <i  alt="" class="fa fa-file" id="screen-btn"></i>
+                    <i  alt="" class="fa fa-file" id="share-btn"></i>
                 </div>
                 <div id="icon-wrapper" class="m-3">
                     <i  alt="" class="fa fa-bars" id="screen-btn"></i>
@@ -136,7 +136,7 @@
    
     
 
-    await window.href(`/room/main-room/?room=${roomName}`, 'self')
+
 
 
   
@@ -194,7 +194,7 @@
     }
 
     function scrollToBottom(){
-        const objDiv = document.querySelector(".chat-container")
+        const objDiv = document.querySelector("#chat")
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 

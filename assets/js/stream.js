@@ -28,7 +28,9 @@ let joinAndDisplayLocalStream = async () => {
    
    
    localTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
-   
+
+
+
    let member = await createMember()
 
    let player = `
@@ -152,6 +154,7 @@ let deleteMember = async () => {
     })
     let member = await response.json()
 }
+
 
 
 
