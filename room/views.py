@@ -3,7 +3,7 @@ from agora_token_builder import RtcTokenBuilder
 import random
 import time
 from django.http import JsonResponse
-from .models import RoomMember
+from .models import RoomMember,Room,Message
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -23,12 +23,20 @@ def getToken(request):
     role = 1
 
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
-
+   
     return JsonResponse({'token': token, 'uid': uid}, safe=False)
 
 
 def room(request):
-    return render(request,'room/room.html')
+    
+    room = request.GET.get("room")
+    
+    messages = Message.objects.filter(room=room)
+    print(room)
+    context ={
+        "messages":messages
+    }
+    return render(request,'room/room.html', context)
 
 
 
@@ -56,7 +64,7 @@ def getMember(request):
         room_name=room_name,
     )
     name = member.name
-    return JsonResponse({'name':member.name}, safe=False)
+    return JsonResponse({'name':name}, safe=False)
 
 
 @csrf_exempt
@@ -67,5 +75,8 @@ def deleteMember(request):
         uid=data['UID'],
         room_name=data['room_name']
     )
+    
     member.delete()
     return JsonResponse('Member deleted', safe=False)
+
+

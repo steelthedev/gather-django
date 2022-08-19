@@ -1,44 +1,6 @@
-{% extends 'room_layout.html' %}
+{% extends 'layout.html' %}
 {% load static %}
 {% block content %}
-
-<nav class="navbar navbar-expand-lg">
-<div class="container-fluid">
-    <a class="navbar-brand" href="./index.html">
-    <img src="{% static 'img/gather-3.svg' %}" width="80%" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fa-solid fa-bars-staggered"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav text-center ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'room:lobby' %}">Join</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Host</a>
-        </li>
-        {% if not request.user.is_authenticated %}
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:login' %}">Sign in</a>
-        </li>
-
-        <li class="nav-item">
-        <a class="nav-btn shadow-none btn btn-outline-white" href="{% url 'accounts:signup' %}">Create account</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-btn shadow-none btn btn-outline-white" href="{% url 'accounts:logout' %}">Logout</a>
-        </li>
-        {% endif %}
-    </div>
-</div>
-</nav>
-
-
 
 <section class="signin lobby" style="background-image:url({% static 'img/landing.png' %});" >
     <div class="container">
@@ -91,10 +53,11 @@
 {% if request.user %}
 {{ request.user.full_name|json_script:"json-user_name" }}
 {% endif %}
-<script>
 
+<script>
+ let form = document.getElementById('form')
 let user_name = JSON.parse(document.getElementById('json-user_name').textContent)
-console.log(user_name)
+
 let handleSubmit = async (e) => {
     e.preventDefault()
     let room = e.target.room.value.toUpperCase()
@@ -115,7 +78,7 @@ let handleSubmit = async (e) => {
     sessionStorage.setItem('room', room)
     sessionStorage.setItem('name', name)
 
-    window.open('/room/main-room/', '_self')
+    window.open(`/room/main-room/?room=${room}`, '_self')
 }
 
 

@@ -9,11 +9,11 @@ const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
 
-let remoteUsers = []
+let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
 
-    document.getElementById("room-name").innerText = CHANNEL
+    console.log(CHANNEL)
 
     client.on('user-published',handleUserJoined)
     client.on('user-left',handleUserLeft)
@@ -21,7 +21,9 @@ let joinAndDisplayLocalStream = async () => {
         await client.join(APP_ID,CHANNEL,TOKEN,UID)
     }catch(error){
         console.log(error)
-        window.open('/room/lobby/','_self')
+
+        window.open('/room/lobby/', 'self')
+     
     }
    
    
@@ -30,14 +32,16 @@ let joinAndDisplayLocalStream = async () => {
    let member = await createMember()
 
    let player = `
-   <div class="col-lg-6 .flex-{grow|shrink}-1 col-md-4">
-   <div class="video-container" id="user-container-${UID}">
-       <div class="username"><span class="user-name">${member.name}</span></div>
-       <div class="video-player" id="user-${UID}"></div>
-   </div>
-
+   
+<div class="col-lg-6 col-md-6 mb-3">
+<div class="video-container" id="user-container-${UID}">
+    <div class="username"><span class="user-name">${member.name}</span></div>
+    <div class="video-player m-auto" id="user-${UID}"></div>
 </div>
 `
+
+
+
    document.getElementById('video-streams-container').insertAdjacentHTML('beforeend',player)
 
    localTracks[1].play(`user-${UID}`)
@@ -58,14 +62,14 @@ let handleUserJoined = async (user, mediaType) => {
         let member = await getMember(user)
 
       player = `
-        <div class="col-lg-6 .flex-{grow|shrink}-1 col-md-4">
-        <div class="video-container" id="user-container-${user.uid}">
-            <div class="username"><span class="user-name">${member.name}</span></div>
-            <div class="video-player" id="user-${user.uid}"></div>
-        </div>
-     
-     </div>
+      <div class="col-lg-6 col-md-6 mb-3">
+      <div class="video-container" id="user-container-${user.uid}">
+          <div class="username"><span class="user-name">${member.name}</span></div>
+          <div class="video-player m-auto" id="user-${user.uid}"></div>
+      </div>
      `
+
+     
 
         document.getElementById('video-streams-container').insertAdjacentHTML('beforeend', player)
         user.videoTrack.play(`user-${user.uid}`)
@@ -87,8 +91,9 @@ let leaveAndRemoveLocalStream = async () => {
     }
 
     await client.leave()
+
     deleteMember()
-    window.open('/room/lobby', '_self')
+    window.open('/room/lobby/', '_self')
 }
 
 
@@ -113,8 +118,6 @@ let toggleMic = async (e) => {
 }
 
 
-
-joinAndDisplayLocalStream()
 
 
 
@@ -150,7 +153,13 @@ let deleteMember = async () => {
     let member = await response.json()
 }
 
+
+
+joinAndDisplayLocalStream()
+
 window.addEventListener("beforeunload",deleteMember);
+
+
 
 document.getElementById("leave-btn").addEventListener('click', leaveAndRemoveLocalStream)
 document.getElementById("camera-btn").addEventListener('click', toggleCamera)

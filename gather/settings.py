@@ -79,6 +79,13 @@ WSGI_APPLICATION = 'gather.wsgi.application'
 ASGI_APPLICATION = 'gather.asgi.application'
 
 
+
+CHANNEL_LAYERS = {
+    'default':{
+        "BACKEND":'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 

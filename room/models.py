@@ -8,8 +8,10 @@ from django.db import models
 class Room(models.Model):
     name = models.CharField(max_length=300)
     owner = models.ForeignKey("accounts.CustomUser", related_name="profile", on_delete=models.CASCADE)
-    duration = models.DateTimeField()
+    duration = models.DateTimeField(null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    uid = models.CharField(max_length=200)
+    token = models.CharField(max_length=700)
     
 
 
@@ -36,13 +38,14 @@ class Outline(models.Model):
 
 
 class Message(models.Model):
-    room = models.ForeignKey(Room, related_name="messages", on_delete=models.CASCADE)
+    member = models.CharField(max_length=200)
     content = models.TextField()
+    room = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self) -> str:
-        return self.user.username
+        return self.member
 
     class Meta:
         ordering = ('created_on',)

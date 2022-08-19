@@ -7,20 +7,24 @@
 .video-container{
     border: 1px solid #920000;
     border-radius: 5px;
-    margin: 2px;
-    background-color: #ccc;
-    height: 400px;
-    max-height: 400px;
+    max-height: 300px;
+    width: 300px;
+    padding: 10px;
 
 }
 
 
 .video-player{
-    height: 100% ;
-    width: 100% ;
-
+    height: 150px;
+    width: 150px ;
+    border-radius: 50%;
+    background: #920000;
 }
 
+.agora_video_player, .video-player div{
+    width: 100%;
+    border-radius: 50% !important;
+}
 
 
 
@@ -35,6 +39,73 @@
 
 
 
+
+
+
 #leave-btn{
-    background: red;
+    background: red !important;
+}
+
+
+.chat-container{
+    height: 90vh;
+    border: 1px solid #920000;
+    width: 80%;
+    border-radius: 20px;
+    position: relative;
+}
+
+.chat-title h6{
+    color: #920000;
+    font-size: 18px;
+}
+
+.chat-title p{
+    font-size: 15px;
+}
+
+.message-container{
+    padding: 0 10px;
+}
+
+
+
+.message-container img{
+    width: 17%;
+    margin: 0 3px;
+}
+
+.message{
+    padding: 5px 10px;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(73, 72, 72, 0.2);
+    border-radius: 100px;
+    align-items: center;
+}
+
+.message span{
+    margin: 0 auto;
+}
+
+
+.chat-input{
+    padding: 5px;
+    width: 100% !important;
+    bottom: 1px;
+    position: absolute;
+    
+}
+
+.chat-input input{
+    width:280px;
+    max-width: 280px;
+    padding: 10px;
+    border: 3px solid #920000 !important;
+    border-radius: 20px;
+}
+
+.chat-input .fa-send{
+    margin:auto 10px;
+    font-size: 20px;
+    color: #920000;
 }
