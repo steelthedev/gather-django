@@ -5,6 +5,7 @@ let UID = Number(sessionStorage.getItem('UID'))
 const NAME = sessionStorage.getItem('name')
 
 
+
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
@@ -12,20 +13,17 @@ let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
-
-    console.log(CHANNEL)
-
     client.on('user-published',handleUserJoined)
     client.on('user-left',handleUserLeft)
+    console.log(UID)
     try{
-        await client.join(APP_ID,CHANNEL,TOKEN,UID)
+      await client.join(APP_ID,CHANNEL,TOKEN,UID)
     }catch(error){
         console.log(error)
-
-        window.open('/room/lobby/', 'self')
-     
+        window.open('/room/lobby/', '_self') 
     }
    
+    
    
    localTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
 
@@ -94,7 +92,7 @@ let leaveAndRemoveLocalStream = async () => {
 
     await client.leave()
 
-    deleteMember()
+    deleteMember();
     window.open('/room/lobby/', '_self')
 }
 
@@ -156,11 +154,12 @@ let deleteMember = async () => {
 }
 
 
-
+window.addEventListener("beforeunload",deleteMember);
 
 joinAndDisplayLocalStream()
 
-window.addEventListener("beforeunload",deleteMember);
+
+
 
 
 

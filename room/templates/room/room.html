@@ -46,6 +46,7 @@
 <section class="video-streams" id="video-streams">
     <div class="container">
         <div class="row justify-content-center">
+            <div class="meeting-time"><p id="time"></p></div>
             <div class="col-lg-8 col-md-12 text-center">
                 <div class="row justify-content-center"  id="video-streams-container">
                    
@@ -99,6 +100,7 @@
             </div>
             </div>
         </div>
+    
  
     </div>
    
@@ -111,15 +113,14 @@
 {% endblock content  %}
 
 {% block scripts %}
-<script  src="{% static 'agora/AgoraRTC_N-4.11.0.js' %}"></script> 
-<script type="text/javascript" src="{% static 'js/stream.js' %}"></script>
-
-
-
-{{ room.id|json_script:"json-roomname" }}
 {{ request.user.username|json_script:"json-username" }}
+{{ room.duration|json_script:"json-duration" }}
+{{ room.start_time|json_script:"json-start_time" }}
+
+
 
 <script>
+
     const roomName = sessionStorage.getItem('room')
     let userName = JSON.parse(document.getElementById('json-username').textContent)
     const username = sessionStorage.getItem('name')
@@ -134,17 +135,10 @@
     );
 
    
-    
-
-
-
-
   
-
-    chatSocket.onclose = function(e){
+ chatSocket.onclose = function(e){
         console.log('end')
     }
-
     chatSocket.onmessage = function(e){
         const data = JSON.parse(e.data);
         console.log(e.data)
@@ -199,11 +193,57 @@
     }
 
     
+function CountDown(){
+// Set the date we're counting down to
+
+let duration = JSON.parse(document.getElementById('json-duration').textContent)
+let start_time = JSON.parse(document.getElementById('json-start_time').textContent)
+let startTime = new Date(start_time).getTime();
+ 
+
+let countDownDate = new Date(duration).getTime();
+// Update the count down every 1 second
+let x = setInterval(function() {
+
+  // Get today's date and time
+  let now = new Date().getTime();
+     
+  if(startTime > now ){
+    window.open('/room/lobby/', '_self')
+    alert("Meeting has not yet started, you will be redirected to lobby")
+  }  
+
+  // Find the distance between now and the count down date
+  let distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("time").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    alert("This meeting has ended, Goodbye")
+    window.open('/room/lobby/', '_self')
+  }
+}, 1000);
+    }
 
 
+CountDown();
 scrollToBottom();
 
 </script>
+
+
+<script  src="{% static 'agora/AgoraRTC_N-4.11.0.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/stream.js' %}"></script>
 
 
 

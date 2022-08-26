@@ -8,12 +8,10 @@ from django.db import models
 class Room(models.Model):
     name = models.CharField(max_length=300)
     owner = models.ForeignKey("accounts.CustomUser", related_name="profile", on_delete=models.CASCADE)
+    start_time = models.DateTimeField(null=True, blank=True)
     duration = models.DateTimeField(null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    uid = models.CharField(max_length=200)
-    token = models.CharField(max_length=700)
-    
-
+   
 
     def __str__(self) -> str:
         return self.name

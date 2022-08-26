@@ -16,16 +16,20 @@
                         </div>
 
 
+                        <div class="col-lg-12 error text-center mt-5 p-3 bg-danger" style="display:none ; border-radius: 10px; width: 95%;" id="error">
+                      
+                        </div>
+
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Room Name" name="room" class="form-control mt-4 mb-4 shadow-none">
+                                <input type="text"required placeholder="Room Name" name="room" class="form-control mt-4 mb-4 shadow-none">
                             </div>
                         </div>
 
                         {% if not request.user.is_authenticated %}
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Name" name="name" class="form-control mb-4 shadow-none">
+                                <input type="text" required placeholder="Name" name="name" class="form-control mb-4 shadow-none">
                             </div>
                         </div>
                         {% endif %}
@@ -70,6 +74,7 @@ let handleSubmit = async (e) => {
     let response = await fetch(`/room/get-token/?channel=${room}`)
     let data = await response.json()
 
+    if (!data.error){
     let UID = data.uid
     let token = data.token
 
@@ -79,6 +84,13 @@ let handleSubmit = async (e) => {
     sessionStorage.setItem('name', name)
 
     window.open(`/room/main-room/?room=${room}`, '_self')
+}else{
+    let error = data.error
+    console.log(error)
+    document.getElementById("error").style.display = 'block';
+    document.getElementById("error").innerHTML = data.error
+}
+
 }
 
 
