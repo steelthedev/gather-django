@@ -4,44 +4,6 @@
 
 {% block content %}
 
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html">
-        <img src="{% static 'img/gather-3.svg' %}" width="80%" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav text-center ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'room:lobby' %}">Join</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Host</a>
-            </li>
-            {% if not request.user.is_authenticated %}
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:login' %}">Sign in</a>
-            </li>
-    
-            <li class="nav-item">
-            <a class="nav-btn shadow-none btn btn-outline-white" href="{% url 'accounts:signup' %}">Create account</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-btn shadow-none btn btn-outline-white" href="{% url 'accounts:logout' %}">Logout</a>
-            </li>
-            {% endif %}
-        </div>
-    </div>
-    </nav>
-
-
-
 
 <section class="video-streams" id="video-streams">
     <div class="container">
@@ -52,7 +14,7 @@
                    
                 </div>
             </div>
-            <div class="col-lg-4 mb-5">
+            <div class="col-lg-4 mb-5 d-sm-none d-md-none d-lg-block d-none">
                 <div class="chat-container mb-4">
                     <div class="chat-title m-auto text-center mt-3">
                         <h6>Live chat</h6>
@@ -61,9 +23,9 @@
                     <div class="chat-main" id="chat">
                         {% for m in messages %}
 
-                        <div class="message-container mb-3 d-flex p-2" >
-                            <img src="{% static 'img/01.jpg' %}" class="rounded-circle" width="10%" alt="">
+                        <div class="message-container mb-3 p-2" >
                             <div class="message m-2">
+                                <p><strong><em>{{m.member}}</em></strong></p>
                                 <span>{{m.content}}</span>
                             </div>
                         </div>
@@ -72,16 +34,16 @@
                     </div>
                     <div class="chat-input d-flex text-center mb-2">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="type message" id="chat-message">
+                            <input type="text" class="form-control shadow-none" placeholder="type message" id="chat-message">
                         </div>
                         <i class="fa fa-send" id="send-btn" role="button"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center fixed-bottom m-auto">
-            <div class="col-lg-3 m-auto  mt-3">
-            <div id="controls-wrapper" class="d-flex">
+        <div class="row justify-content-center position-relative " >
+        <div class="col-lg-12 col-sm-12 col-md-12 fixed-bottom text-center">
+            <div id="controls-wrapper" class="d-flex justify-content-center">
                 <div id="icon-wrapper" class="m-3">
                     <i  alt="" class="fa fa-microphone" id="mic-btn"></i>
                 </div>
@@ -91,18 +53,57 @@
                 <div id="icon-wrapper" class="m-3">
                     <i  alt="" class="fa fa-file" id="share-btn"></i>
                 </div>
-                <div id="icon-wrapper" class="m-3">
-                    <i  alt="" class="fa fa-bars" id="screen-btn"></i>
+                <div id="icon-wrapper" class="m-3 d-md-block d-lg-none d-sm-none d-xs-block">
+                    <i  alt="" class="fa fa-comment" role="button" id="comment-btn" data-bs-toggle="modal" data-bs-target="#chatModal" data-bs-whatever="@mdo"></i>
                 </div>
+            
                 <div id="icon-wrapper" class="m-3">
                     <i  alt="" class="fa fa-phone" id="leave-btn"></i>
                 </div>
             </div>
-            </div>
+        </div>
         </div>
     
  
     </div>
+
+    <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-wine" id="exampleModalLabel">Room Live chat</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-container mb-4">
+                    <div class="chat-title m-auto text-center mt-3">
+                        <h6>Live chat</h6>
+                        <p>Chat disappears after meeting ends</p>
+                    </div>
+                    <div class="modal-chat-main" id="modal-chat">
+                        {% for m in messages %}
+
+                        <div class="message-container mb-5 d-flex p-2" >
+                            <div class="message m-2">
+                               <p><span><strong><em>{{m.member}}</em></strong></span></p> 
+                                <span>{{m.content}}</span>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                    <div class="chat-input d-flex text-center mb-2">
+                        <div class="form-group">
+                            <input type="text" class="form-control shadow-none" placeholder="type message" id="modal-chat-message">
+                        </div>
+                        <i class="fa fa-send" id="modal-send-btn" role="button"></i>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
    
 </section>
 
@@ -144,8 +145,15 @@
         console.log(e.data)
         if (data.message){
                 document.querySelector('.chat-main').innerHTML +=  `<div class="message-container mb-3 d-flex p-2">
-                            <img src="{% static 'img/01.jpg' %}" class="rounded-circle" width="10%" alt="">
                             <div class="message m-2">
+                                 <p><strong><em>${data.username}</em></strong></p>
+                                <span>${data.message}</span>
+                            </div>
+                        </div>`
+
+                        document.querySelector('.modal-chat-main').innerHTML +=  `<div class="message-container mb-3 d-flex p-2">
+                            <div class="message m-2">
+                                 <p><strong><em>${data.username}</em></strong></p>
                                 <span>${data.message}</span>
                             </div>
                         </div>`
@@ -154,6 +162,7 @@
             alert("Empty message");
         }
         scrollToBottom();
+        scrollToBottomModal();
     }
 
 
@@ -187,8 +196,45 @@
 
     }
 
+    document.querySelector('#modal-send-btn').onclick = function(e) {
+        e.preventDefault();
+
+        let messageInputDom = document.querySelector("#modal-chat-message"); 
+       
+        let message = messageInputDom.value;
+        
+
+        console.log({
+            'message': message,
+            'username': username,
+            'room': roomName
+        })
+
+        chatSocket.send(JSON.stringify({
+            'message':message,
+            'username':username,
+            'room':roomName,
+            'uid':uid
+        }));
+
+        messageInputDom.value = ''
+
+        return false;
+
+
+    }
+
+
+    document.getElementById("comment-btn").onclick = function (e){
+        scrollToBottomModal();
+    }
     function scrollToBottom(){
         const objDiv = document.querySelector("#chat")
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    function scrollToBottomModal(){
+        const objDiv = document.querySelector("#modal-chat")
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 
@@ -238,6 +284,7 @@ let x = setInterval(function() {
 
 CountDown();
 scrollToBottom();
+scrollToBottomModal();
 
 </script>
 
