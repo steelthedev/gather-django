@@ -18,7 +18,6 @@
 
 
         
-        
     </head>
     <body>
         
@@ -38,9 +37,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#submenu1"  class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Meetings">
+                            <a href="{% url 'dashboard:create_meeting' %}"  class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Meetings">
                                 <i class="fs-4 fa fa-meetup"></i> <span class="ms-1 d-none d-sm-inline">Meetings</span> </a>
-                        <li>
+                                </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'room:lobby' %}"  class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Meetings">
+                            <i class="fs-4 fa fa-plus"></i> <span class="ms-1 d-none d-sm-inline">Join a Meeting</span> </a>
+                            </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:logout' %}"  class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Meetings">
+                            <i class="fs-4 fa fa-arrow-right"></i> <span class="ms-1 d-none d-sm-inline">Logout</span> </a>
+                    </li>
+                            
+                   <!--     <li>
                             <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Webinars">
                                 <i class="fs-4 fa-podcast fa"></i> <span class="ms-1 d-none d-sm-inline">Webinars</span></a>
                         </li>
@@ -64,7 +75,7 @@
                         <li>
                             <a href="#" class="nav-link side-link px-0 mt-2 align-middle" data-toggle="tooltip" data-placement="top" title="Account Management">
                                 <i class="fs-4 fa fa-user-circle-o"></i> <span class="ms-1 d-none d-sm-inline">Account Management</span> </a>
-                        </li>
+                        </li>-->
                     </ul>
                     
     

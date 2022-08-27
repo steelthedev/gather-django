@@ -25,7 +25,7 @@ def getToken(request):
     role = 1
     
     try:
-        room_db_check = Room.objects.get(name=channelName)
+        room_db_check = Room.objects.get(uid=channelName)
         if room_db_check:
             token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
             return JsonResponse({'token': token, 'uid': uid}, safe=False)
@@ -38,11 +38,11 @@ def room(request):
     
     room = request.GET.get("room")
     try:
-        message = Message.objects.filter(room=room)
-        meeting = Room.objects.get(name=room)
+        meeting = Room.objects.get(uid=room)
     except ObjectDoesNotExist:
         messages.info(request,'Room name must be valid')
         return redirect('room:lobby')
+    message = Message.objects.filter(room=meeting.id)
     context ={
         "messages":message,
         "room":meeting,
@@ -62,7 +62,6 @@ def createMember(request):
     )
 
     return JsonResponse({'name':data['name']}, safe=False)
-
 
 
 def getMember(request):
@@ -93,3 +92,14 @@ def deleteMember(request):
     return JsonResponse('Member has been deleted', safe=False)
 
 
+def meetingDetails(request):
+    uid = request.GET.get('room')
+    try:
+        room= Room.objects.get(
+            uid=uid,
+        )
+        return JsonResponse({'name':room.name,'start':room.start_time,'end':room.duration,'owner':room.owner.email}, safe=False)
+    except:
+        return JsonResponse({'error':'Room does not exist'}, safe=False)
+
+    

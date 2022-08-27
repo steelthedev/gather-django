@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.Dashboard, name="dashboard"),
     path('update/name/',views.changePersonalDetails, name="update_name"),
     path('update-contact/',views.UpdateContact, name="update_contact"),
-    path('create-meeting/',views.CreateMeeting, name="create_meeting")
+    path('create-meeting/',views.CreateMeeting, name="create_meeting"),
+    path('delete-meeting/<int:id>',views.DeleteMeeting, name="delete_meeting")
 ]

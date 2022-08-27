@@ -148,12 +148,14 @@
     color: #ffffff;
 }
 
-.form-container .l-btn{
+.form-container .l-btn,.m-btn{
     padding: 15px;
     color: #ffffff;
     background: #920000;
     border-radius: 10px;
 }
+
+
 
 .form-container input:focus{
     background: #920000;
@@ -195,7 +197,7 @@ small a{
 
 .sidebar{
     background: #c4c4c4;
-    height: 100% !important;
+    height: 100vh !important;
     min-height: 100vh;
     padding: 20px;
     color: #920000;
@@ -301,7 +303,7 @@ small a{
 
 /**dashboard**/
 
-.text-wine,.modal{
+.text-wine, .modal{
     color: #920000 !important;
 }
 
@@ -332,6 +334,11 @@ small a{
 .wine-btn{
     background: #920000;
     color: #ffffff;
+}
+
+.form-input{
+    padding: 15px;
+    border: 1px solid #920000;
 }
 
 @media screen and (max-width:475px) {

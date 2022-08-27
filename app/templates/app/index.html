@@ -15,19 +15,17 @@
              
             </div>
             <div class="col-lg-5 col-sm-8 col-md-8  m-auto justify-content-center m-auto text-center  mt-1 pt-2">
-                <div class="group-btn d-lg-flex d-md-flex m-auto">
-                    <div class="form-group">
-                        <input type="text" class="form-control shadow-none" placeholder="Enter your email" name="email">
-                    </div>
-                   
-                    <a class="hero-btn shadow-none btn btn-outline-white" href="#">Create account</a>
+                <div class="">
+                    <a class="hero-btn shadow-none btn btn-outline-white" href="{% url 'accounts:signup' %}">Get Started</a>
                 </div>
             </div>
       
         </div>
     </div>
-
 </section>
 
 
 {% endblock %}
+
+
+

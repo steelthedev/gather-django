@@ -1,9 +1,13 @@
 import email
+from multiprocessing import context
 from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from accounts.models import CustomUser
 from django.contrib import messages
+from room.models import Room
+
+
 
 @login_required(login_url="accounts:login")
 def Dashboard(request):
@@ -44,10 +48,33 @@ def UpdateContact(request):
     messages.warning(request,"something went wrong")
     return redirect("dashboad:dashboard")
 
-
+@login_required(login_url="accounts:login")
 def CreateMeeting(request):
-    if request.method == "POST":
-        name = request.POST["name"]
-        start_time=request.POST["start"]
-        end_time=request.POST["end"]
-    return render(request,'dashboard/create-meeting.html')
+    if request.user.is_authenticated:
+        user=request.user
+
+        try:
+            room =  Room.objects.filter(owner=user)
+        except:
+            pass
+        if request.method == "POST":
+            name = request.POST["name"].upper()
+            start_time=request.POST["start"]
+            end_time=request.POST["end"]
+            Room.objects.create(name=name,owner=user,start_time=start_time,duration=end_time)
+        context ={
+            'room':room
+        }
+        return render(request,'dashboard/create-meeting.html',context)
+
+@login_required(login_url="accounts:login")
+def DeleteMeeting(request,id):
+    try:
+        room=Room.objects.get(pk=id)
+    except:
+        messages.warning(request,"Meeting could not be found")
+        return redirect("dashboard:create_meeting")
+
+    room.delete()
+    messages.success(request,"Meeting deleted successfully")
+    return redirect("dashboard:create_meeting")

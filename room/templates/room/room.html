@@ -116,13 +116,14 @@
 {% block scripts %}
 {{ request.user.username|json_script:"json-username" }}
 {{ room.duration|json_script:"json-duration" }}
+{{ room.id|json_script:"json-room" }}
 {{ room.start_time|json_script:"json-start_time" }}
 
 
 
 <script>
 
-    const roomName = sessionStorage.getItem('room')
+    const roomName =  JSON.parse(document.getElementById('json-room').textContent)
     let userName = JSON.parse(document.getElementById('json-username').textContent)
     const username = sessionStorage.getItem('name')
     const uid = sessionStorage.getItem('UID')

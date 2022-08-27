@@ -1,3 +1,4 @@
+from uuid import uuid4
 from django.db import models
 
 
@@ -10,6 +11,7 @@ class Room(models.Model):
     owner = models.ForeignKey("accounts.CustomUser", related_name="profile", on_delete=models.CASCADE)
     start_time = models.DateTimeField(null=True, blank=True)
     duration = models.DateTimeField(null=True, blank=True)
+    uid=models.UUIDField(primary_key=False,unique=True,editable=False,null=True,blank=True,auto_created=True,default=uuid4)
     created_on = models.DateTimeField(auto_now_add=True)
    
 
