@@ -6,6 +6,7 @@ app_name = "dashboard"
 
 urlpatterns = [
     path('', views.Dashboard, name="dashboard"),
-    path('dashboard/update/name',views.changePersonalDetails, name="update_name"),
-    path('dashboard/update-contact',views.UpdateContact, name="update_contact")
+    path('update/name/',views.changePersonalDetails, name="update_name"),
+    path('update-contact/',views.UpdateContact, name="update_contact"),
+    path('create-meeting/',views.CreateMeeting, name="create_meeting")
 ]

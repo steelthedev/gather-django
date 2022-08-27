@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<sector class="meeting">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>Create a meeting</h2>
+            </div>
+
+            <div class="col-lg-8">
+                <form action="" class="form">
+                    <div class="col-lg-8">
+                        <div class="form-group  mb-3">
+                            <input type="text" placeholder="Input meeting name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group  mb-3">
+                            <input type="text" placeholder="Input start time" id="date1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group  mb-3">
+                            <input type="text" placeholder="Input End time" id="date2" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</sector>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    $(document).ready(function () {
+    $("#date1").flatpickr(
+        {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+
+    $("#date2").flatpickr(
+        {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+    });
+
+</script>
+
+{% endblock %}
+
+

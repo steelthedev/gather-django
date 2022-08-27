@@ -43,3 +43,11 @@ def UpdateContact(request):
     
     messages.warning(request,"something went wrong")
     return redirect("dashboad:dashboard")
+
+
+def CreateMeeting(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        start_time=request.POST["start"]
+        end_time=request.POST["end"]
+    return render(request,'dashboard/create-meeting.html')
