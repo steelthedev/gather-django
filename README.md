@@ -16,9 +16,9 @@ pip install requirements.txt
 Only registered users can create a meeting.
 
 
-## Start a meeting
+## Join a meeting
 
-All that is required to start a meeting is the meeting ID that will be shared by the host after creating a meeting
+All that is required to start a meeting is the meeting ID that will be shared by the host after creating a meeting and the name of the guest. You need not bother about name if you are a registered user.
 
 ## meeting do not start until the time set
 
