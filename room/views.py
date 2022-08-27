@@ -33,7 +33,6 @@ def getToken(request):
         return JsonResponse({'error':'Room does not exist'}, safe=False)
 
 
-
 def room(request):
     
     room = request.GET.get("room")
