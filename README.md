@@ -11,6 +11,13 @@ pip install requirements.txt
 ```
 
 
+## Django Admin details
+
+username: akinwumi@gmail.com
+password: kal
+
+
+
 ## Create a meeting
 
 To create a meeting, users needs to be logged in, click on HOST in the navbar or go to meetings on the user dashboard.
