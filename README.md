@@ -18,6 +18,9 @@ To create a meeting, users needs to be logged in, click on HOST in the navbar or
 Only registered users can create a meeting. Meetings must be unique, hence the generation of meeting IDs automatically. This meeting Id will be the gateway for guests and users to join.
 
 
+### The time and date used is the standard UTC for django. Input time and Date based on this time zone
+
+
 ## Join a meeting
 
 All that is required to start a meeting is the meeting ID that will be shared by the host after creating a meeting and the name of the guest. You need not bother about name if you are a registered user.
