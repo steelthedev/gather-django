@@ -29,7 +29,7 @@ def getToken(request):
         if room_db_check:
             token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
             return JsonResponse({'token': token, 'uid': uid}, safe=False)
-    except ObjectDoesNotExist:
+    except:
         return JsonResponse({'error':'Room does not exist'}, safe=False)
 
 

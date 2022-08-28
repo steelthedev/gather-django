@@ -22,6 +22,8 @@ Only registered users can create a meeting. Meetings must be unique, hence the g
 
 All that is required to start a meeting is the meeting ID that will be shared by the host after creating a meeting and the name of the guest. You need not bother about name if you are a registered user.
 
+A meeting link is also generated, this is the fastest way to join a meeting.
+
 
 
 #### meeting do not start until the time set

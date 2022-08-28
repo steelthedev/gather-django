@@ -37,6 +37,7 @@
                 <table class="table table-hover table-stripped  table-bordered">
                     <th>Meeting Name</th>
                     <th>Meeting Id</th>
+                    <th>Meeting Link</th>
                     <th>Start Time</th>
                     <th>End Time</th>
                     <th>Created On</th>
@@ -46,6 +47,7 @@
                         <tr>
                             <td>{{room.name}}</td>
                             <td>{{room.uid}}</td>
+                            <td>localhost:8000/room/lobby/?meeting={{room.uid}}</td>
                             <td>{{room.start_time}}</td>
                             <td>{{room.duration}}</td>
                             <td>{{room.created_on}}</td>

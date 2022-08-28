@@ -61,6 +61,14 @@
 <script>
 let form = document.getElementById('form')
 let user_name = JSON.parse(document.getElementById('json-user_name').textContent)
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const meeting_id = urlParams.get('meeting')
+
+if(meeting_id){
+    form["room"].value=meeting_id
+}
 
 let handleSubmit = async (e) => {
     e.preventDefault()

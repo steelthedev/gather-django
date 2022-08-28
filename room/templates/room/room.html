@@ -274,8 +274,8 @@ let x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    alert("This meeting has ended, Goodbye")
     window.open('/room/lobby/', '_self')
+    alert("This meeting has ended, Goodbye")
   }
 }, 1000);
     }
