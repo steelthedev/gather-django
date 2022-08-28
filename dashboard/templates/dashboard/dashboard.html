@@ -8,7 +8,9 @@
     <div class="col-lg-10">
         <a onclick="editName()" role="button" class="p-link float-end mt-5 pt-2" id="editname" data-bs-toggle="modal" data-bs-target="#editNameModal" data-bs-whatever="@mdo">Edit <i class="fa fa-pencil"></i></a>
         <div class="profile-picture d-lg-flex">
+          {% if request.user.image %}
             <img src= {{request.user.image.url}} width="120px" max-width="150px" alt="">
+          {% endif %} 
             <div class="p-title m-4">
                 <h2>{{request.user.full_name}}</h2>
                 
