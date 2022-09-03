@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+-k41$n5ylh6#=adk(%b$tay#eeg&5d+yx$-q@car)^m@g5s9!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['gather-django-production.up.railway.app','localhost']
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
